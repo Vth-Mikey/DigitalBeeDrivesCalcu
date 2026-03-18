@@ -1,7 +1,7 @@
 # 🐝 BSS Drive Cost Calculator `v1.1`
 
 <p align="center">
-  <img src="img/Hivesticker_party_robo_bear.webp" width="100">
+  <img src="img/social-preview.png" width="100">
 </p>
 
 
