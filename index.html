@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSS Drive Calc v1.1</title>
+    <title>BSS Drive Calc v1.2.1</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +49,6 @@
         }
 
         body { 
-            /* UPDATED: BSS Font Family */
             font-family: 'Source Sans 3', sans-serif; 
             background-color: var(--bg-color); 
             color: var(--text-color); 
@@ -109,7 +108,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700; /* Extra bold for titles */
+            font-weight: 700;
         }
         
         .heads-up { 
@@ -171,8 +170,26 @@
         .row { display: flex; gap: 10px; margin-bottom: 20px; }
 
         .btn-reset { width: 100%; margin-top: 15px; background: var(--input-bg); color: #888; border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; font-family: 'Source Sans 3', sans-serif; }
+        
+        .btn-update {
+            width: 100%;
+            margin-top: 10px;
+            background: transparent;
+            color: var(--section-title);
+            border: 1px solid var(--section-title);
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+            opacity: 0.7;
+        }
+        .btn-update:hover { opacity: 1; }
+
         .footer { text-align: center; margin-top: 20px; font-size: 0.85rem; color: #666; }
         .footer a { color: #f1c40f; text-decoration: none; font-weight: 700; }
+        
+        #app-version { opacity: 0.5; font-size: 0.7rem; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
@@ -227,13 +244,17 @@
     </div>
 
     <button class="btn-reset" onclick="resetForm()">Reset Input</button>
+    <button class="btn-update" onclick="forceUpdate()">Check for Updates</button>
 
     <div class="footer">
         Created by <a href="https://guns.lol/nightnosleep" target="_blank">✯𝑵𝖎𝖌𝖍𝒕</a>
+        <span id="app-version">v1.2.1</span>
     </div>
 </div>
 
 <script>
+    const VERSION = "1.2.1";
+
     function toggleTheme() {
         const body = document.body;
         const btn = document.getElementById('themeBtn');
@@ -244,6 +265,8 @@
     }
 
     window.onload = function() {
+        document.getElementById('app-version').innerText = "Version " + VERSION;
+
         if(localStorage.getItem('bss_theme') === 'light') {
             document.body.classList.add('light-mode');
             document.getElementById('themeBtn').innerText = '🌙';
@@ -254,6 +277,12 @@
         if(localStorage.getItem('bss_type')) document.getElementById('driveType').value = localStorage.getItem('bss_type');
         calculate();
     };
+
+    function forceUpdate() {
+        if(confirm("Refresh to check for the latest version? Your saved data will stay safe.")) {
+            location.reload(true);
+        }
+    }
 
     function getPriceAtN(n, base) {
         if (n <= 0) return 0;
@@ -311,3 +340,4 @@
 
 </body>
 </html>
+
