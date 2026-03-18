@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vth-mikey.github.io/DigitalBeeDrivesCalcu/sitemap.xml
